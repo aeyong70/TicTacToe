@@ -1,16 +1,25 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainPanelController : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void OnClikSinglePlayButton()
     {
-        
+        // TODO : 싱글 플레이 버튼 클릭 시
+        GameManager.Instance.ChangeToGameScene(Constants.GameType.SinglePlay);
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnClickMultiPlayButton()
     {
-        
+        //PlayerPrefs.
+        // TODO : 멀티 플레이 버튼 클릭 시
+        GameManager.Instance.ChangeToGameScene(Constants.GameType.MultiPlay);
+    }
+
+    public void OnClickSettingsButton()
+    {
+        // TODO : 설정 버튼 클릭 시
+        GameManager.Instance.OpenSettingsPanel();
     }
 }
