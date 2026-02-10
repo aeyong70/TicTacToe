@@ -7,6 +7,8 @@ public class PanelController : MonoBehaviour
 {
     [SerializeField] private RectTransform panelTransform;
 
+    public delegate void PanelControllerHideDelegate();
+
     private CanvasGroup canvasGroup;
 
     private void Awake()
@@ -27,13 +29,14 @@ public class PanelController : MonoBehaviour
         panelTransform.DOScale(1, 0.4f).SetEase(Ease.OutBack);
     }
 
-    public void Hide()
+    public void Hide(PanelControllerHideDelegate onComplete = null)
     {
         Debug.Log("Hide Panel");
 
         canvasGroup.DOFade(0, 0.4f).SetEase(Ease.Linear);
         panelTransform.DOScale(0, 0.4f).SetEase(Ease.InBack).OnComplete(() =>
         {
+            onComplete?.Invoke();
             gameObject.SetActive(false);
         });
     }
